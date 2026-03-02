@@ -1,16 +1,111 @@
-# React + Vite
+# 💌 08/03 Love App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web tặng người yêu nhân ngày Quốc tế Phụ nữ, xây dựng bằng **Vite + React**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Yêu cầu
 
-## React Compiler
+- [Node.js](https://nodejs.org/) **v18+**
+- npm (đi kèm Node.js)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Cài đặt & chạy
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# 1. Vào thư mục dự án
+cd love-app
+
+# 2. Cài dependencies
+npm install
+
+# 3. Chạy dev server
+npm run dev
+```
+
+Mở trình duyệt tại **http://localhost:5173**
+
+> Chạy cổng khác: `npm run dev -- --port 3308`
+
+---
+
+## Tuỳ chỉnh nội dung
+
+Toàn bộ nội dung (tên, lời nhắn, ảnh, footer…) nằm trong một file duy nhất:
+
+```
+src/config.js
+```
+
+| Trường             | Mô tả                                          |
+| ------------------ | ---------------------------------------------- |
+| `recipientName`    | Tên người được tặng                            |
+| `senderName`       | Tên người tặng                                 |
+| `hero.eyebrow`     | Dòng badge nhỏ trên đầu                        |
+| `hero.subtitle`    | Câu phụ dưới tên                               |
+| `hero.poem`        | Dòng thơ nhỏ                                   |
+| `sections[]`       | Mảng các slide kỷ niệm (ảnh + ngày + lời nhắn) |
+| `finalPhoto`       | Ảnh full-screen ở slide cuối                   |
+| `footer.lines[]`   | Các dòng chữ trong footer                      |
+| `footer.signature` | Chữ ký cuối                                    |
+
+### Thay ảnh
+
+Mỗi section trong `sections[]` có trường `image` — thay bằng:
+
+- **URL ảnh online**: `"https://..."`
+- **Ảnh local**: đặt file vào thư mục `public/` rồi dùng `"/ten-anh.jpg"`
+
+---
+
+## Build production
+
+```bash
+npm run build
+```
+
+File tĩnh xuất ra thư mục `dist/` — có thể deploy lên Vercel, Netlify, GitHub Pages…
+
+### Deploy nhanh lên Vercel
+
+```bash
+npm i -g vercel
+vercel
+```
+
+### Deploy lên GitHub Pages
+
+```bash
+# Thêm vào vite.config.js: base: '/tên-repo/'
+npm run build
+npx gh-pages -d dist
+```
+
+---
+
+## Cấu trúc dự án
+
+```
+love-app/
+├── public/             # Ảnh tĩnh (nếu dùng ảnh local)
+├── src/
+│   ├── config.js       # ← Sửa nội dung tại đây
+│   ├── App.jsx         # Tất cả components
+│   ├── App.css         # Toàn bộ styling
+│   └── index.css       # Reset + Google Fonts
+├── index.html
+└── package.json
+```
+
+---
+
+## Tính năng
+
+- 📜 Scroll snap — mỗi lần cuộn = một trang mới
+- 💫 Animation vào/ra mỗi slide (image zoom, timeline vẽ, card glow)
+- 🖼️ Layout bắt chéo (ảnh & text nghiêng đối nhau)
+- 💗 Cursor trail tim theo chuột
+- 🌸 Cánh hoa rơi nền hero
+- 🔴 Progress dots điều hướng bên phải
+- 📱 Responsive mobile

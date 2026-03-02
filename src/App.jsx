@@ -57,10 +57,13 @@ function useCurrentSlide(containerRef, total) {
 
 // ─── Progress Dots ─────────────────────────────────────────
 function ProgressDots({ current, total, containerRef }) {
-  const scrollTo = useCallback((i) => {
-    const el = containerRef.current;
-    if (el) el.scrollTo({ top: i * el.clientHeight, behavior: "smooth" });
-  }, [containerRef]);
+  const scrollTo = useCallback(
+    (i) => {
+      const el = containerRef.current;
+      if (el) el.scrollTo({ top: i * el.clientHeight, behavior: "smooth" });
+    },
+    [containerRef],
+  );
 
   return (
     <nav className="progress-dots" aria-label="Slide navigation">
@@ -100,7 +103,11 @@ function Hero({ scrollRef }) {
           <div className="hero-eyebrow">{config.hero.eyebrow}</div>
           <p className="hero-to">{config.hero.title}</p>
           <h1 className="hero-name">{config.recipientName}</h1>
-          <div className="hero-divider"><span /><span className="hero-divider-heart">♥</span><span /></div>
+          <div className="hero-divider">
+            <span />
+            <span className="hero-divider-heart">♥</span>
+            <span />
+          </div>
           <p className="hero-subtitle">{config.hero.subtitle}</p>
           <p className="hero-poem">{config.hero.poem}</p>
           <div className="hero-hearts">
@@ -128,7 +135,9 @@ function TimelineDivider({ index, total }) {
       <div className="tl-line tl-line-top" />
       <div className="tl-dot">
         <span className="tl-heart">♥</span>
-        <span className="tl-index">{index + 1}/{total}</span>
+        <span className="tl-index">
+          {index + 1}/{total}
+        </span>
       </div>
       <div className="tl-line tl-line-bottom" />
     </div>
@@ -145,9 +154,16 @@ function StorySection({ item, index, total }) {
 
       <div className="story-inner">
         {/* Image side — own reveal */}
-        <div className={`story-image-wrap reveal ${isEven ? "from-left" : "from-right"}`}>
+        <div
+          className={`story-image-wrap reveal ${isEven ? "from-left" : "from-right"}`}
+        >
           <div className="story-image-frame">
-            <img src={item.image} alt="kỷ niệm" className="story-img" loading="lazy" />
+            <img
+              src={item.image}
+              alt="kỷ niệm"
+              className="story-img"
+              loading="lazy"
+            />
             <div className="story-img-shine" />
           </div>
           {item.date && <div className="story-date">📅 {item.date}</div>}
@@ -157,14 +173,18 @@ function StorySection({ item, index, total }) {
         <TimelineDivider index={index} total={total} />
 
         {/* Message side — own reveal, opposite direction */}
-        <div className={`story-message-wrap reveal ${isEven ? "from-right" : "from-left"}`}>
+        <div
+          className={`story-message-wrap reveal ${isEven ? "from-right" : "from-left"}`}
+        >
           <div className="story-message-card">
             <div className="card-corner card-corner-tl" />
             <div className="card-corner card-corner-br" />
             <div className="quote-mark">“</div>
             <p className="story-message">{item.message}</p>
             <div className="message-hearts">
-              <span>💗</span><span>💗</span><span>💗</span>
+              <span>💗</span>
+              <span>💗</span>
+              <span>💗</span>
             </div>
           </div>
         </div>
@@ -198,15 +218,29 @@ function Footer() {
       <div className="reveal fade-in footer-inner">
         <div className="footer-to">🌸 Gửi em — {config.recipientName} 🌸</div>
         <div className="footer-decoration">
-          {["❤️","🌸","💕","🌹","💖","🌸","❤️"].map((s, i) => (
-            <span key={i} style={{ animationDelay: `${i * 0.18}s` }}>{s}</span>
+          {["❤️", "🌸", "💕", "🌹", "💖", "🌸", "❤️"].map((s, i) => (
+            <span key={i} style={{ animationDelay: `${i * 0.18}s` }}>
+              {s}
+            </span>
           ))}
         </div>
         {config.footer.lines.map((line, i) => (
-          <p key={i} className="footer-message" style={{ animationDelay: `${i * 0.2}s` }}>{line}</p>
+          <p
+            key={i}
+            className="footer-message"
+            style={{ animationDelay: `${i * 0.2}s` }}
+          >
+            {line}
+          </p>
         ))}
-        <div className="footer-divider"><span /><span className="footer-divider-heart">♥</span><span /></div>
-        <p className="footer-signature">{config.footer.signature}, {config.senderName}</p>
+        <div className="footer-divider">
+          <span />
+          <span className="footer-divider-heart">♥</span>
+          <span />
+        </div>
+        <p className="footer-signature">
+          {config.footer.signature}, {config.senderName}
+        </p>
         <div className="footer-name-big">{config.recipientName}</div>
         <div className="footer-big-heart">❤️</div>
       </div>
@@ -240,7 +274,7 @@ export default function App() {
           }
         });
       },
-      { root: container, threshold: 0.45 }
+      { root: container, threshold: 0.45 },
     );
 
     container.querySelectorAll(".snap-slide").forEach((el) => io.observe(el));
@@ -252,12 +286,21 @@ export default function App() {
       <Hero scrollRef={appRef} />
       <main>
         {config.sections.map((item, i) => (
-          <StorySection key={i} item={item} index={i} total={config.sections.length} />
+          <StorySection
+            key={i}
+            item={item}
+            index={i}
+            total={config.sections.length}
+          />
         ))}
       </main>
       <FinalPhotoSlide />
       <Footer />
-      <ProgressDots current={current} total={totalSlides} containerRef={appRef} />
+      <ProgressDots
+        current={current}
+        total={totalSlides}
+        containerRef={appRef}
+      />
     </div>
   );
 }
