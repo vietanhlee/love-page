@@ -256,6 +256,16 @@ function StorySection({ item, index, total }) {
       {/* Watermark symbol — unique per slide */}
       <div className="section-watermark">{v.mark}</div>
 
+      {/* Date as top-center heading */}
+      {item.date && (
+        <div
+          className={`story-slide-title reveal from-top`}
+          style={{ transitionDelay: "0.05s" }}
+        >
+          <h2 className="slide-title-text">{item.date}</h2>
+        </div>
+      )}
+
       <div className="story-inner">
         {/* Image side */}
         <div
@@ -271,7 +281,6 @@ function StorySection({ item, index, total }) {
             />
             <div className="story-img-shine" />
           </div>
-          {item.date && <div className="story-date">📅 {item.date}</div>}
         </div>
 
         {/* Timeline middle */}

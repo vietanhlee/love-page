@@ -324,11 +324,48 @@
 /* ─── Story Sections ───────────────── */
 .story-section {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 3rem;
+  padding: 2rem 3rem 1.5rem;
+  gap: 0;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
+}
+
+/* ─── Date title at top center ───────── */
+.story-slide-title {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 1.6rem;
+  z-index: 2;
+  position: relative;
+}
+.slide-title-text {
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1;
+  margin: 0;
+  color: #a4133c;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  -webkit-text-fill-color: #a4133c;
+  /* Pill badge */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 179, 198, 0.7);
+  border-radius: 50px;
+  padding: 0.45rem 1.6rem;
+  box-shadow:
+    0 2px 16px rgba(201, 24, 74, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.slide-title-icon {
+  display: none;
 }
 /* ─── Per-slide background variants ──── */
 .story-section.bg-v0 {
@@ -1334,7 +1371,16 @@
   }
 
   .story-section {
-    padding: 3.5rem 1.2rem;
+    padding: 1.8rem 1.2rem 1.2rem;
+    gap: 0;
+  }
+  .story-slide-title {
+    margin-bottom: 1rem;
+  }
+  .slide-title-text {
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    padding: 0.38rem 1.2rem;
   }
   .story-inner {
     grid-template-columns: 1fr;
