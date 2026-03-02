@@ -926,23 +926,35 @@
     name-glow-pulse 2.8s ease-in-out infinite;
 }
 @keyframes name-shimmer {
-  0%   { background-position: 0% center; }
-  100% { background-position: 220% center; }
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 220% center;
+  }
 }
 @keyframes name-float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  48%       { transform: translateY(-10px) scale(1.03); }
-  52%       { transform: translateY(-10px) scale(1.03); }
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  48% {
+    transform: translateY(-10px) scale(1.03);
+  }
+  52% {
+    transform: translateY(-10px) scale(1.03);
+  }
 }
 @keyframes name-glow-pulse {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 2px 18px rgba(255, 200, 100, 0.5))
-            drop-shadow(0 0 8px rgba(255, 143, 171, 0.35));
+      drop-shadow(0 0 8px rgba(255, 143, 171, 0.35));
   }
   50% {
     filter: drop-shadow(0 4px 28px rgba(255, 220, 80, 0.85))
-            drop-shadow(0 0 22px rgba(255, 100, 140, 0.7))
-            drop-shadow(0 0 40px rgba(255, 77, 121, 0.35));
+      drop-shadow(0 0 22px rgba(255, 100, 140, 0.7))
+      drop-shadow(0 0 40px rgba(255, 77, 121, 0.35));
   }
 }
 
