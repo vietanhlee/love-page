@@ -758,27 +758,84 @@
   right: -8px;
 }
 
-.quote-mark {
-  font-family: Georgia, serif;
-  font-size: 5.5rem;
+/* ─── Title accent line + heart ─── */
+.msg-title-accent {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+.msg-accent-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(to right, transparent, #ffb3c6);
+  display: block;
+}
+.msg-title-accent .msg-accent-line:last-child {
+  background: linear-gradient(to left, transparent, #ffb3c6);
+}
+.msg-accent-heart {
+  font-size: 1.1rem;
+  color: #ff4d79;
+  animation: pulse-heart 1.6s ease-in-out infinite;
   line-height: 1;
-  background: linear-gradient(135deg, #ffb3c6, #ff8fab);
+}
+
+/* ─── Main title text ─── */
+.story-message-title {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(1.45rem, 2.6vw, 2.05rem);
+  font-weight: 700;
+  line-height: 1.55;
+  text-align: center;
+  margin: 0 0 1.4rem;
+  background: linear-gradient(
+    135deg,
+    #590d22 0%,
+    #c9184a 35%,
+    #ff4d79 65%,
+    #a4133c 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: -1.1rem;
-  display: block;
-  font-weight: bold;
-}
-
-.story-message {
-  font-size: clamp(1.12rem, 2.1vw, 1.38rem);
-  color: #590d22;
-  line-height: 1.95;
-  font-style: italic;
-  margin: 0 0 1.4rem;
+  filter: drop-shadow(0 2px 10px rgba(201, 24, 74, 0.15));
   position: relative;
   z-index: 1;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Footer dots ─── */
+.msg-title-footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+.msg-footer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb3c6, #ff4d79);
+  display: inline-block;
+  animation: dot-pop 1.8s ease-in-out infinite;
+}
+.msg-footer-dot:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.msg-footer-dot:nth-child(3) {
+  animation-delay: 0.5s;
+}
+@keyframes dot-pop {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
 }
 
 .message-hearts span {

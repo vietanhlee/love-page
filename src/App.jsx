@@ -285,12 +285,17 @@ function StorySection({ item, index, total }) {
           <div className="story-message-card">
             <div className="card-corner card-corner-tl" />
             <div className="card-corner card-corner-br" />
-            <div className="quote-mark">"</div>
-            <p className="story-message">{item.message}</p>
-            <div className="message-hearts">
-              <span>💗</span>
-              <span>💗</span>
-              <span>💗</span>
+            <div className="card-pattern" />
+            <div className="msg-title-accent">
+              <span className="msg-accent-line" />
+              <span className="msg-accent-heart">♥</span>
+              <span className="msg-accent-line" />
+            </div>
+            <h2 className="story-message-title">{item.message}</h2>
+            <div className="msg-title-footer">
+              <span className="msg-footer-dot" />
+              <span className="msg-footer-dot" />
+              <span className="msg-footer-dot" />
             </div>
           </div>
         </div>
