@@ -348,8 +348,8 @@ function Footer() {
         <p className="footer-signature">
           {config.footer.signature}, {config.senderName}
         </p>
-        <div className="footer-name-big">{config.recipientName}</div>
         <div className="footer-big-heart">❤️</div>
+        <div className="footer-name-big">{config.recipientName}</div>
       </div>
     </footer>
   );
