@@ -174,32 +174,93 @@ function Hero({ scrollRef }) {
 
 // ─── Timeline Divider ────────────────────────────────────────
 function TimelineDivider({ index, total }) {
+  // Dot slides from top (index 0) to bottom (index total-1)
+  const ratio = total > 1 ? index / (total - 1) : 0.5;
   return (
     <div className="timeline-divider">
-      <div className="tl-line tl-line-top" />
+      <div
+        className="tl-line tl-line-top"
+        style={{ flex: ratio, minHeight: ratio < 0.05 ? 4 : 20 }}
+      />
       <div className="tl-dot">
         <span className="tl-heart">♥</span>
         <span className="tl-index">
           {index + 1}/{total}
         </span>
       </div>
-      <div className="tl-line tl-line-bottom" />
+      <div
+        className="tl-line tl-line-bottom"
+        style={{ flex: 1 - ratio, minHeight: ratio > 0.95 ? 4 : 20 }}
+      />
     </div>
   );
 }
 
 // ─── Story Section ───────────────────────────────────────────
+// Per-slide animation & style variants
+const STORY_VARIANTS = [
+  // slide 1: classic horizontal pinch, message zooms in
+  {
+    imgReveal: "from-left",
+    msgReveal: "zoom-out",
+    imgDelay: "0.05s",
+    msgDelay: "0.28s",
+    mark: "♥",
+    bg: "bg-v0",
+  },
+  // slide 2: image 3D-flips in, message rises from below
+  {
+    imgReveal: "flip-y",
+    msgReveal: "from-bottom",
+    imgDelay: "0.08s",
+    msgDelay: "0.36s",
+    mark: "✿",
+    bg: "bg-v1",
+  },
+  // slide 3: image swings in, message drops from top
+  {
+    imgReveal: "swing-in",
+    msgReveal: "from-top",
+    imgDelay: "0.04s",
+    msgDelay: "0.30s",
+    mark: "♡",
+    bg: "bg-v2",
+  },
+  // slide 4: image drops from top, message spins up
+  {
+    imgReveal: "from-top",
+    msgReveal: "rise-spin",
+    imgDelay: "0.06s",
+    msgDelay: "0.26s",
+    mark: "✦",
+    bg: "bg-v3",
+  },
+  // slide 5: reverse 3D flip + message swings from right
+  {
+    imgReveal: "flip-y-r",
+    msgReveal: "swing-in-r",
+    imgDelay: "0.07s",
+    msgDelay: "0.34s",
+    mark: "❧",
+    bg: "bg-v4",
+  },
+];
+
 function StorySection({ item, index, total }) {
   const isEven = index % 2 === 0;
+  const v = STORY_VARIANTS[index % STORY_VARIANTS.length];
   return (
-    <section className={`story-section snap-slide ${isEven ? "even" : "odd"}`}>
-      {/* Decorative watermark heart */}
-      <div className="section-watermark">♥</div>
+    <section
+      className={`story-section snap-slide ${isEven ? "even" : "odd"} ${v.bg}`}
+    >
+      {/* Watermark symbol — unique per slide */}
+      <div className="section-watermark">{v.mark}</div>
 
       <div className="story-inner">
-        {/* Image side — own reveal */}
+        {/* Image side */}
         <div
-          className={`story-image-wrap reveal ${isEven ? "from-left" : "from-right"}`}
+          className={`story-image-wrap reveal ${v.imgReveal}`}
+          style={{ transitionDelay: v.imgDelay }}
         >
           <div className="story-image-frame">
             <img
@@ -216,14 +277,15 @@ function StorySection({ item, index, total }) {
         {/* Timeline middle */}
         <TimelineDivider index={index} total={total} />
 
-        {/* Message side — own reveal, opposite direction */}
+        {/* Message side */}
         <div
-          className={`story-message-wrap reveal ${isEven ? "from-right" : "from-left"}`}
+          className={`story-message-wrap reveal ${v.msgReveal}`}
+          style={{ transitionDelay: v.msgDelay }}
         >
           <div className="story-message-card">
             <div className="card-corner card-corner-tl" />
             <div className="card-corner card-corner-br" />
-            <div className="quote-mark">“</div>
+            <div className="quote-mark">"</div>
             <p className="story-message">{item.message}</p>
             <div className="message-hearts">
               <span>💗</span>
