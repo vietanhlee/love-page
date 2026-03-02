@@ -2,6 +2,81 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { config } from "./config";
 import "./App.css";
 
+// ─── Image Carousel ──────────────────────────────────────────
+function ImageCarousel({ images }) {
+  const [current, setCurrent] = useState(0);
+  const timerRef = useRef(null);
+
+  const resetTimer = useCallback((len) => {
+    clearInterval(timerRef.current);
+    if (len > 1) {
+      timerRef.current = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % len);
+      }, 2000);
+    }
+  }, []);
+
+  useEffect(() => {
+    resetTimer(images.length);
+    return () => clearInterval(timerRef.current);
+  }, [images.length, resetTimer]);
+
+  const goTo = useCallback(
+    (idx) => {
+      const len = images.length;
+      setCurrent((idx + len) % len);
+      resetTimer(len);
+    },
+    [images.length, resetTimer],
+  );
+
+  return (
+    <div className="carousel-container">
+      <div className="carousel-row">
+        {images.length > 1 && (
+          <button
+            className="carousel-nav carousel-nav-left"
+            onClick={() => goTo(current - 1)}
+            aria-label="Ảnh trước"
+          >
+            ‹
+          </button>
+        )}
+        <div className="story-image-frame">
+          <img
+            src={images[current]}
+            alt="kỷ niệm"
+            className="story-img"
+            loading="lazy"
+          />
+          <div className="story-img-shine" />
+        </div>
+        {images.length > 1 && (
+          <button
+            className="carousel-nav carousel-nav-right"
+            onClick={() => goTo(current + 1)}
+            aria-label="Ảnh tiếp"
+          >
+            ›
+          </button>
+        )}
+      </div>
+      {images.length > 1 && (
+        <div className="carousel-dots">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              className={`carousel-dot-btn ${i === current ? "active" : ""}`}
+              onClick={() => goTo(i)}
+              aria-label={`Ảnh ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Floating Petals ─────────────────────────────────────────
 function FloatingPetals() {
   const symbols = ["🌸", "🌹", "💗", "🌺", "💖", "✨"];
@@ -256,7 +331,8 @@ function StorySection({ item, index, total }) {
       {/* Watermark symbol — unique per slide */}
       <div className="section-watermark">{v.mark}</div>
 
-      {/* Date as top-center heading */}
+      {/* Floating petals on each story slide */}
+      <FloatingPetals />
       {item.date && (
         <div
           className={`story-slide-title reveal from-top`}
@@ -272,15 +348,7 @@ function StorySection({ item, index, total }) {
           className={`story-image-wrap reveal ${v.imgReveal}`}
           style={{ transitionDelay: v.imgDelay }}
         >
-          <div className="story-image-frame">
-            <img
-              src={item.image}
-              alt="kỷ niệm"
-              className="story-img"
-              loading="lazy"
-            />
-            <div className="story-img-shine" />
-          </div>
+          <ImageCarousel images={item.images || [item.image]} />
         </div>
 
         {/* Timeline middle */}

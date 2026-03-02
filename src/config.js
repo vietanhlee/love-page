@@ -10,52 +10,56 @@ export const config = {
   // --- PHẦN HERO (màn hình đầu tiên) ---
   hero: {
     eyebrow: "Hôm nay là ngày 08 / 03 🌸",
-    title: "Gửi đến em", // hiển thị trước tên
+    title: "Gửi đến em - người phụ nữ anh yêu", // hiển thị trước tên
     subtitle:
-      "Mỗi kỷ niệm chúng mình có cùng nhau là một trang sách mà anh sẽ giữ mãi trong lòng.",
+      "Mỗi khoảnh khắc chúng mình có cùng nhau là một trang sách mà anh sẽ giữ mãi trong lòng.",
     poem: "Và hôm nay, anh muốn dành cả thế giới này cho em.",
   },
 
   // --- CÁC PHẦN ẢNH & THÔNG ĐIỆP ---
-  // Mỗi mục gồm: image (link ảnh), message (thông điệp), date (ngày kỷ niệm - tuỳ chọn)
+  // Mỗi mục gồm:
+  //   images: ["/images/a.jpg", "/images/b.jpg", ...]  ← nhiều ảnh (carousel tự động)
+  //   message (thông điệp), date (ngày kỷ niệm - tuỳ chọn)
   // Layout sẽ tự động xen kẽ trái/phải
   sections: [
     {
-      image: "/images/rap.jpg",
+      images: ["/images/rap.jpg"],
       date: "Ngày đầu tiên gặp nhau...",
       message:
-        "Còn nhớ lần đầu tiên mình gặp nhau không? Anh đã chẳng ngủ được suốt đêm hôm đó, cứ nghĩ mãi về nụ cười của em. Khoảnh khắc ấy, anh biết rằng em sẽ là người đặc biệt nhất trong cuộc đời anh.",
+        "Còn nhớ lần đầu tiên mình gặp nhau không? Anh đã chẳng ngủ được suốt đêm hôm đó, cứ nghĩ mãi về sự thẹn thùng và dễ thương ấy. Ấn tượng của anh về em là sự giản dị và mộc mạc nhưng luôn hướng tới giá trị cốt lõi. Khoảnh khắc ấy, anh biết rằng em sẽ là người đặc biệt nhất trong cuộc đời anh.",
     },
     {
-      image: "/images/kt2.jpg",
-      date: "Khi yêu nhau...",
+      images: ["/images/va1.jpg", "/images/va2.jpg", "/images/va3.jpg", "/images/va4.jpg", "/images/va5.jpg"],
+      date: "Việt Anh - chàng thư sinh xuất thân nghèo khó",
       message:
-        "Cảm ơn em đã chọn anh. Mỗi buổi sáng thức dậy biết rằng có em trong cuộc sống này là điều hạnh phúc nhất mà anh từng có. Em là ánh nắng sưởi ấm ngay cả những ngày mưa lạnh nhất.",
+        "Anh - chàng trai xuất thân nghèo khó, không năng lực nổi bật, không ngoại hình, cũng chẳng tài cán bao nhiêu. Xuất tháng năm tuổi trẻ, anh luôn khát khao học hành, học không phải để giàu có hơn, mà là phát triển toàn diện bản thân hơn. Nên anh cũng chẳng có ai yêu, vụng về tình cảm và thiếu sự tinh tế. Anh trải qua nhiều khía cạnh cuộc sống, từ đắng cay đến ngọt bùi nên anh rất thích những người nhẹ nhàng, giản dị và biết suy nghĩ",
     },
     {
-      image: "/images/va1.jpg",
-      date: "Những chuyến đi cùng nhau...",
+      images: ["/images/kt2.jpg", "/images/kt1.jpg", "/images/kt3.jpg"],
+      date: "Và rồi Khánh Trang - nàng tiểu thư xứ Triệu đã xuất hiện",
       message:
-        "Mỗi con đường chúng mình đi qua, mỗi bữa ăn chia sẻ, mỗi cơn mưa cùng trú... Tất cả đều trở thành những kỷ niệm đẹp nhất mà anh sẽ giữ mãi trong tim. Bên em, ở đâu cũng là nhà.",
+        "Em - một cô nàng dịu nhẹ, giản dị và phúc hậu. Em chú trọng tri thức, chăm chỉ học hành và hướng về gia đình, em còn tin ở Phật pháp, tin điều lẽ phải và sống lương thiện. Anh rất ngưỡng mộ cái vibe đấy, anh nghĩ là nếu cưới cô nàng vượng phu ích tử này thì đúng phước ba mươi đời. Em sinh ra trong một gia đình khá giả, có sự nuôi dạy chuẩn chỉ của người bố quân đội và người mẹ giáo viên đầy phúc hậu. Với anh, gia đình của em là một mẫu gia đình mà anh mơ ước, một gia đình gia giáo, tràn đầy yêu thương và đủ đầy. Dường như để quen em anh không có cửa :))",
+    },
+    
+    {
+      images: ["/images/qua.png", "/images/qua2.jpg", "/images/qua3.jpg"],
+      date: "Tình cảm của anh dành cho em",
+      message:
+        "Hôm gặp em ở rạp, em rưng rưng với anh về tình đầu, em muốn mình được trọn vẹn ở tình đầu, ôi lúc đó anh kiểu rất là bối rối ấy, vì anh thấy mình không môn đăng hộ đối, hai gia đình khác nhaucó thể nay hợp nhưng mai tan là chuyện bình thường. Nhưng em bảo, em không quan tâm, em sẽ ở cạnh anh lúc anh khó khăn nhất và không rời bỏ anh một mình. Lúc đó, anh cảm động lắm, khí phách anh hùng của anh trào dâng :)). Anh muốn thương em, yêu em và hạnh phúc với em. Thế là anh tìm cách yêu em bằng mọi khả năng của anh, bằng mọi sự bao bọc và yêu thương. Hé hé, thế là anh stalk em và thấy em đăng lại lọ này, anh chả biết nó là cái gì, anh mua tặng em luôn nè, cơ mà chả thấy ẻm khen mình tinh tế, đáng lẽ ra phải thưởng cho nụ hôn chứ nhỉ :))",
     },
     {
-      image: "/images/qua.png",
-      date: "Những lúc khó khăn...",
+      images: ["/images/thu_em_2.png", "/images/qua_em.jpg", "/images/qua_em1.jpg"],
+      date: "Sự ngọt ngào của em",
       message:
-        "Cảm ơn em đã ở lại khi mọi thứ không hoàn hảo. Cảm ơn em đã tin tưởng anh khi anh chưa tin tưởng vào bản thân. Có em bên cạnh, mọi khó khăn đều trở nên nhẹ nhàng hơn biết bao.",
-    },
+        "Này là bức thiệp đầu tiên mà anh nhận được từ em, ôi má, cũng thật lòng và chan chứa đó, nói thật là cũng bất ngờ lắm, em bảo là em ngại không muốn thổ lộ tình cảm trực tiếp, anh nghĩ là lúc em viết thư em sẽ sến súa hơn cơ, cơ mà nó cũng thế :))). Anh đùa thôi, cơ mà sau em không cần viết nhiều mõi tay đâu, hôn anh cái là được :). Nhưng mà anh muốn nói là, anh rất trân trọng những lời em viết, những tình cảm em dành cho anh, và anh sẽ luôn giữ chúng trong tim. Anh cũng rất yêu em, và anh sẽ cố gắng để làm cho em hạnh phúc mỗi ngày. Cảm ơn em đã đến bên anh, đã yêu anh và đã làm cho cuộc sống của anh trở nên ý nghĩa hơn. Anh yêu em nhiều lắm!",
+      },
     {
-      image: "/images/thu_em_2.png",
-      date: "Hiện tại và tương lai...",
+      images: ["/images/anh_chung.jpg", "/images/anh_chung1.jpg"],
+      date: "Chúng ta chụp ảnh chung đầu tiên",
       message:
-        "Hôm nay, ngày 08 tháng 03, anh muốn nói với em rằng: anh yêu em hơn hết thảy. Anh muốn tiếp tục viết câu chuyện này cùng em, thêm nhiều kỷ niệm, thêm nhiều nụ cười, thêm nhiều yêu thương.",
+        "Cảm ơn em đã cho anh một cơ hội để trở thành một phiên bản tốt hơn của chính mình, được thương em, được quan tâm em, được chăm sóc em và yêu em. Cảm ơn em đã cho anh một tình yêu chân thành và ngọt ngào, một tình yêu mà anh chưa từng biết đến trước đây. Anh rất trân trọng những kỷ niệm chúng ta đã có cùng nhau, từ những lần đi chơi, ăn uống, xem phim, đến những lần tâm sự, chia sẻ và hỗ trợ nhau. Mỗi khoảnh khắc bên em đều là một món quà quý giá mà anh sẽ giữ mãi trong tim.",
     },
-    {
-      image: "/images/anh_chung.jpg",
-      date: "Hiện tại và tương lai...",
-      message:
-        "Hôm nay, ngày 08 tháng 03, anh muốn nói với em rằng: anh yêu em hơn hết thảy. Anh muốn tiếp tục viết câu chuyện này cùng em, thêm nhiều kỷ niệm, thêm nhiều nụ cười, thêm nhiều yêu thương.",
-    },
+    
   ],
 
   // --- ẢNH TO CUỐI TRANG ---
