@@ -328,17 +328,36 @@
   position: relative;
   overflow: visible;
 }
-.story-section.even {
+/* ─── Per-slide background variants ──── */
+.story-section.bg-v0 {
   background:
     radial-gradient(ellipse 70% 60% at 15% 50%, #fff0f5 0%, transparent 65%),
     radial-gradient(ellipse 55% 70% at 85% 50%, #ffd6e4 0%, transparent 65%),
     #fdf2f5;
 }
-.story-section.odd {
+.story-section.bg-v1 {
   background:
-    radial-gradient(ellipse 70% 60% at 85% 50%, #fff0f5 0%, transparent 65%),
-    radial-gradient(ellipse 55% 70% at 15% 50%, #ffd6e4 0%, transparent 65%),
-    #fceef3;
+    radial-gradient(ellipse 65% 70% at 80% 30%, #fce4ec 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 20% 75%, #ffd6e7 0%, transparent 60%),
+    #fde8f0;
+}
+.story-section.bg-v2 {
+  background:
+    radial-gradient(ellipse 60% 80% at 50% 20%, #fff0f5 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 90%, #ffc2d4 0%, transparent 60%),
+    #fef0f4;
+}
+.story-section.bg-v3 {
+  background:
+    radial-gradient(ellipse 80% 55% at 10% 60%, #ffeef3 0%, transparent 65%),
+    radial-gradient(ellipse 60% 65% at 90% 40%, #ffd6e0 0%, transparent 60%),
+    #fdf5f7;
+}
+.story-section.bg-v4 {
+  background:
+    radial-gradient(ellipse 65% 65% at 75% 75%, #ffc2d4 0%, transparent 60%),
+    radial-gradient(ellipse 55% 55% at 25% 25%, #fff0f5 0%, transparent 60%),
+    #fce8ef;
 }
 
 /* Large translucent heart watermark */
@@ -358,6 +377,19 @@
 }
 .snap-slide.slide-active .section-watermark {
   transform: translate(-50%, -50%) rotate(15deg);
+}
+/* Per-variant watermark rotation directions */
+.snap-slide.bg-v1.slide-active .section-watermark {
+  transform: translate(-50%, -50%) rotate(-12deg);
+}
+.snap-slide.bg-v2.slide-active .section-watermark {
+  transform: translate(-50%, -50%) rotate(22deg);
+}
+.snap-slide.bg-v3.slide-active .section-watermark {
+  transform: translate(-50%, -50%) rotate(-16deg);
+}
+.snap-slide.bg-v4.slide-active .section-watermark {
+  transform: translate(-50%, -50%) rotate(8deg);
 }
 
 /* Grid: image | timeline | message */
@@ -444,6 +476,35 @@
 .reveal.from-bottom {
   transform: translateY(48px);
 }
+/* ── Diverse reveal types ─────────── */
+.reveal.from-top {
+  transform: translateY(-64px) scale(0.95);
+}
+.reveal.zoom-out {
+  transform: scale(1.2) translateY(14px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.flip-y {
+  transform: perspective(700px) rotateY(80deg) translateX(-24px);
+  transition: opacity 0.7s ease-out, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.flip-y-r {
+  transform: perspective(700px) rotateY(-80deg) translateX(24px);
+  transition: opacity 0.7s ease-out, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.swing-in {
+  transform: rotate(-22deg) translateX(-60px) scale(0.84);
+  transform-origin: bottom left;
+  transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+.reveal.swing-in-r {
+  transform: rotate(22deg) translateX(60px) scale(0.84);
+  transform-origin: bottom right;
+  transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+.reveal.rise-spin {
+  transform: translateY(65px) rotate(-14deg) scale(0.87);
+}
 
 /* Activate when parent slide is active */
 .snap-slide.slide-active .reveal {
@@ -451,7 +512,7 @@
   transform: none;
 }
 
-/* Stagger: image enters first, then message */
+/* Default stagger (overridden per-slide via inline style) */
 .story-image-wrap.reveal {
   transition-delay: 0.05s;
 }
@@ -584,16 +645,11 @@
 
 .story-image-frame {
   width: 100%;
-  max-width: 460px;
-  border-radius: 22px;
+  max-width: 440px;
   overflow: hidden;
-  box-shadow:
-    0 16px 48px rgba(201, 24, 74, 0.22),
-    0 0 0 5px #fff,
-    0 0 0 10px #ffccd5,
-    0 0 0 11px rgba(255, 143, 171, 0.3);
   aspect-ratio: 4/3;
   position: relative;
+  /* Polaroid styles applied via the polaroid block below */
 }
 
 .story-img {
@@ -715,20 +771,9 @@
   z-index: 1;
 }
 
-.message-hearts {
-  display: flex;
-  gap: 0.55rem;
-  font-size: 1.15rem;
-}
-.message-hearts span {
-  animation: pulse-heart 1.6s ease-in-out infinite;
-}
-.message-hearts span:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.message-hearts span:nth-child(3) {
-  animation-delay: 0.6s;
-}
+.message-hearts span { animation: pulse-heart 1.6s ease-in-out infinite; }
+.message-hearts span:nth-child(2) { animation-delay: 0.3s; }
+.message-hearts span:nth-child(3) { animation-delay: 0.6s; }
 
 /* ─── Footer ─────────────────────────── */
 .love-footer {
@@ -956,6 +1001,170 @@
     0 0 60px rgba(201, 24, 74, 0.5);
   letter-spacing: 0.04em;
 }
+
+/* ─── Sparkles ─────────────────────────── */
+.sparkles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.sparkle {
+  position: absolute;
+  animation: twinkle 2.4s ease-in-out infinite;
+  color: #ff8fab;
+  line-height: 1;
+  /* animation-duration & animation-delay are set by JSX inline style */
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0;   transform: scale(0.6) rotate(0deg); }
+  30%       { opacity: 1;   transform: scale(1.2) rotate(30deg); }
+  60%       { opacity: 0.6; transform: scale(0.9) rotate(-15deg); }
+}
+
+/* ─── Rising Hearts (footer) ───────────── */
+.rising-hearts-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.rising-heart {
+  position: absolute;
+  bottom: -40px;
+  animation: rise 3.5s ease-in infinite;
+  line-height: 1;
+  /* animation-duration & animation-delay are set by JSX inline style */
+}
+@keyframes rise {
+  0%   { bottom: -40px; opacity: 0;   transform: translateX(0)  rotate(0deg)   scale(0.8); }
+  15%  {                opacity: 1; }
+  80%  {                opacity: 0.4; }
+  100% { bottom: 110%;  opacity: 0;   transform: translateX(30px) rotate(25deg) scale(1.1); }
+}
+
+/* ─── Section Number Badge ──────────────── */
+.section-number-badge {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c9184a;
+  background: rgba(255,255,255,0.88);
+  border: 1.5px solid #ffccd5;
+  border-radius: 50px;
+  padding: 0.25rem 1.1rem;
+  letter-spacing: 0.06em;
+  box-shadow: 0 3px 12px rgba(201,24,74,0.12);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.6s;
+}
+.snap-slide.slide-active .section-number-badge {
+  opacity: 1;
+}
+
+/* ─── Polaroid Photo Frame ──────────────── */
+/* Make frame look like a photo with white caption bar */
+.story-image-frame {
+  background: #fff;
+  padding: 0.6rem 0.6rem 2.8rem;    /* extra bottom for caption bar */
+  box-shadow:
+    0 20px 60px rgba(201,24,74,0.22),
+    0 0 0 1px rgba(200,150,160,0.15),
+    0 6px 20px rgba(0,0,0,0.12);
+  border-radius: 6px !important;     /* polaroid — sharp corners */
+}
+
+/* Tape strips */
+.photo-tape {
+  position: absolute;
+  width: 52px;
+  height: 20px;
+  background: rgba(255,230,180,0.75);
+  border-radius: 2px;
+  z-index: 5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+.photo-tape::before {      /* texture lines mimicking tape */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 4px,
+    rgba(255,255,255,0.35) 4px,
+    rgba(255,255,255,0.35) 5px
+  );
+  border-radius: 2px;
+}
+.photo-tape-tl {
+  top: -10px;
+  left: 10%;
+  transform: rotate(-15deg);
+}
+.photo-tape-tr {
+  top: -10px;
+  right: 10%;
+  transform: rotate(15deg);
+}
+
+/* Caption inside white Polaroid bar */
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-style: italic;
+  font-family: 'Dancing Script', cursive;
+  color: #a4133c;
+  letter-spacing: 0.04em;
+  padding: 0 0.5rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ─── Card Pattern (top decorative band) ── */
+.card-pattern {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ffb3c6, #ff4d79, #ff8fab, #ffb3c6);
+  background-size: 200% 100%;
+  animation: pattern-shimmer 3s ease-in-out infinite;
+  border-radius: 24px 24px 0 0;
+}
+@keyframes pattern-shimmer {
+  0%, 100% { background-position: 0% 0%; }
+  50%       { background-position: 100% 0%; }
+}
+
+/* ─── Message footer (hearts row) ──────── */
+.message-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.message-hearts {
+  display: flex;
+  gap: 0.45rem;
+  font-size: 1.05rem;
+}
+.message-hearts span { animation: pulse-heart 1.6s ease-in-out infinite; }
+.message-hearts span:nth-child(2) { animation-delay: 0.3s; }
+.message-hearts span:nth-child(3) { animation-delay: 0.6s; }
 
 /* ─── Responsive ─────────────────────── */
 @media (max-width: 768px) {

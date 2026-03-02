@@ -23,6 +23,49 @@ function FloatingPetals() {
   );
 }
 
+// ─── Sparkles ────────────────────────────────────────────────
+function Sparkles() {
+  const glyphs = ["✦", "✶", "✵", "☆"];
+  const stars = Array.from({ length: 18 }, (_, i) => ({
+    left: `${(i * 7.3 + 5) % 95}%`,
+    top: `${(i * 11.7 + 8) % 88}%`,
+    animationDelay: `${(i * 0.37) % 3}s`,
+    animationDuration: `${2.4 + (i % 5) * 0.5}s`,
+    fontSize: `${10 + (i % 3) * 6}px`,
+    opacity: 0.5 + (i % 4) * 0.12,
+  }));
+  return (
+    <div className="sparkles-container">
+      {stars.map((s, i) => (
+        <span key={i} className="sparkle" style={s}>
+          {glyphs[i % glyphs.length]}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+// ─── Rising Hearts (footer) ──────────────────────────────────
+function RisingHearts() {
+  const items = ["♥", "💗", "💖", "💕"];
+  const hearts = Array.from({ length: 12 }, (_, i) => ({
+    left: `${(i * 8.5 + 3) % 94}%`,
+    animationDelay: `${(i * 0.45) % 4.5}s`,
+    animationDuration: `${3.5 + (i % 4) * 0.8}s`,
+    fontSize: `${14 + (i % 4) * 8}px`,
+    opacity: 0.18 + (i % 3) * 0.08,
+  }));
+  return (
+    <div className="rising-hearts-container">
+      {hearts.map((h, i) => (
+        <span key={i} className="rising-heart" style={h}>
+          {items[i % items.length]}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 // ─── Heart Cursor Trail ──────────────────────────────────────
 function useHeartTrail() {
   useEffect(() => {
@@ -93,6 +136,7 @@ function Hero({ scrollRef }) {
   return (
     <section className="hero snap-slide">
       <FloatingPetals />
+      <Sparkles />
       {/* Decorative blobs */}
       <div className="hero-blob hero-blob-1" />
       <div className="hero-blob hero-blob-2" />
@@ -213,6 +257,7 @@ function FinalPhotoSlide() {
 function Footer() {
   return (
     <footer className="love-footer snap-slide">
+      <RisingHearts />
       <div className="footer-blob footer-blob-1" />
       <div className="footer-blob footer-blob-2" />
       <div className="reveal fade-in footer-inner">
